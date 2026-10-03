@@ -1,7 +1,21 @@
+# Secrets
 .env
 .env.*
+
+# Local data pack - DO NOT COMMIT
+campus_customs.db
+*.db
+products/
+data/
+
+# Frontend dependencies
 node_modules/
+
+# Python
 __pycache__/
 *.pyc
 .venv/
 venv/
+
+# Allow placeholder env file
+!.env.example
