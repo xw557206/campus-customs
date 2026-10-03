@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "campus-customs",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--prefix",
+        "C:/Users/wangx_marm3v0/OneDrive/Desktop/MGT 409 AI Foundations/HW 4/frontend"
+      ],
+      "port": 5173
+    }
+  ]
+}

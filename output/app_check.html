@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Campus Customs — App Check</title>
+<style>
+  :root {
+    --yale: #00356b;
+    --yale-deep: #012048;
+    --yale-ink: #00172f;
+    --yale-mist: #f2f6fb;
+    --gold: #b08d3f;
+    --gold-ink: #8a6a22;
+    --ink: #16202b;
+    --dim: #5c6b7a;
+    --line: #e3e7ee;
+    --bg: #fbfaf7;
+    --ok: #1a7f4b;
+    --ok-bg: #e9f6ee;
+    --warn-bg: #fdf6e7;
+    --warn-line: #e8d9ae;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.65 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  header.top {
+    background: linear-gradient(150deg, var(--yale) 0%, var(--yale-ink) 100%);
+    color: #fff;
+    padding: 54px 28px 58px;
+    border-bottom: 1px solid rgba(176, 141, 63, 0.5);
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+  .eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    text-transform: uppercase; letter-spacing: .18em;
+    font-size: 11px; font-weight: 700; color: #e8dcc0; margin-bottom: 14px;
+  }
+  .eyebrow::before { content: ''; width: 28px; height: 1px; background: #e8dcc0; }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(30px, 5vw, 44px); font-weight: 600;
+    letter-spacing: -.02em; margin: 0 0 14px; line-height: 1.15;
+  }
+  header.top p { margin: 0; max-width: 62ch; color: #cddcee; }
+  main { max-width: 980px; margin: 0 auto; padding: 10px 28px 70px; }
+  section.check {
+    background: #fff; border: 1px solid var(--line); border-radius: 16px;
+    padding: 30px 30px 34px; margin-top: 34px;
+    box-shadow: 0 8px 26px rgba(1, 32, 72, .06);
+  }
+  h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 25px; font-weight: 600; color: var(--yale-ink);
+    margin: 0 0 6px; letter-spacing: -.015em;
+  }
+  h3 {
+    font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .15em; color: var(--gold-ink); margin: 26px 0 9px;
+  }
+  .num {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--yale); background: var(--yale-mist);
+    border: 1px solid #dde6f2; border-radius: 999px;
+    padding: 4px 12px; margin-bottom: 12px;
+  }
+  p { margin: 0 0 12px; }
+  .lede { color: var(--dim); }
+  figure { margin: 14px 0 0; }
+  figure img {
+    width: 100%; display: block; border: 1px solid var(--line);
+    border-radius: 11px; background: #fff;
+  }
+  figcaption { font-size: 13.5px; color: var(--dim); margin-top: 9px; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 760px) { .pair { grid-template-columns: 1fr; } }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; margin-top: 6px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+  th { font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; color: var(--dim); }
+  td code, p code, li code {
+    background: var(--yale-mist); border: 1px solid #e2eaf4; border-radius: 5px;
+    padding: 1px 6px; font-size: 13px;
+  }
+  .verdict {
+    margin-top: 24px; padding: 14px 18px; border-radius: 11px;
+    background: var(--ok-bg); border: 1px solid #b6e0c6; color: #14633a;
+    font-size: 15px;
+  }
+  .verdict strong { color: var(--ok); }
+  .note {
+    margin-top: 16px; padding: 14px 18px; border-radius: 11px;
+    background: var(--warn-bg); border: 1px solid var(--warn-line);
+    color: #6d551c; font-size: 14.5px;
+  }
+  .match { color: var(--ok); font-weight: 700; }
+  ul { margin: 0 0 12px; padding-left: 20px; }
+  li { margin-bottom: 5px; }
+  footer {
+    max-width: 980px; margin: 0 auto; padding: 0 28px 60px;
+    color: var(--dim); font-size: 13.5px;
+  }
+  footer hr { border: none; border-top: 1px solid var(--line); margin: 0 0 18px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <p class="eyebrow">Problem 11 · Site testing</p>
+    <h1>Campus Customs — App Check</h1>
+    <p>
+      Three checks run against the live site, with the chatbot answering through
+      the real PydanticAI agent and the real <code>campus_customs.db</code>.
+      Every screenshot below was taken from the running app; every number was
+      confirmed against the database directly.
+    </p>
+  </div>
+</header>
+
+<main>
+
+  <!-- ─────────────────────────── CHECK 1 ─────────────────────────── -->
+  <section class="check">
+    <span class="num">Check 1</span>
+    <h2>The chatbot reports real inventory from the database</h2>
+    <p class="lede">
+      The aim is to prove the assistant is reading live stock rather than
+      producing plausible-sounding text. So the test product was chosen
+      deliberately: <strong>Yale Dad Crewneck</strong> has three sizes at zero,
+      which means a bot that is guessing will almost certainly get it wrong.
+    </p>
+
+    <h3>Ground truth, queried from the database first</h3>
+    <table>
+      <tr><th>Size</th><th>XS</th><th>S</th><th>M</th><th>L</th><th>XL</th><th>XXL</th></tr>
+      <tr><td><strong>Quantity</strong></td><td>15</td><td>8</td><td>0</td><td>0</td><td>0</td><td>15</td></tr>
+    </table>
+    <p style="margin-top:10px">
+      So the correct answer is: <strong>in stock in XS, S and XXL</strong>;
+      <strong>out of stock in M, L and XL</strong>.
+    </p>
+
+    <h3>What I asked</h3>
+    <p>&ldquo;What sizes of the Yale Dad Crewneck are in stock?&rdquo;</p>
+
+    <h3>What the assistant replied</h3>
+    <p>
+      &ldquo;The Yale Dad Crewneck is currently in stock in XS, S, and XXL.
+      M, L, and XL are out of stock.&rdquo;
+      <span class="match">— exact match, including all three zeros.</span>
+    </p>
+
+    <figure>
+      <img src="app_check_images/check1-chat-inventory.jpg"
+           alt="Chat widget showing the question about Yale Dad Crewneck sizes and the assistant's reply naming XS, S and XXL as in stock and M, L and XL as out of stock" />
+      <figcaption>
+        The assistant naming the in-stock and out-of-stock sizes correctly. Note
+        the page behind it has also updated to &ldquo;1 match from your
+        question&rdquo; with the Yale Dad Crewneck card.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <img src="app_check_images/check1-product-page-sizes.jpg"
+           alt="Yale Dad Crewneck product page with M, L and XL struck through and disabled, XS selected showing 15 in stock" />
+      <figcaption>
+        The same product's own page, as corroboration: M, L and XL are struck
+        through and disabled, and XS reports &ldquo;15 in stock&rdquo; — the
+        exact quantity in the database. The chatbot and the storefront read
+        through the same data layer, so they cannot disagree.
+      </figcaption>
+    </figure>
+
+    <div class="verdict">
+      <strong>Pass.</strong> The reply matches the database on all six sizes,
+      including the three that are out of stock. Getting the zeros right is the
+      part that rules out guessing.
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── CHECK 2 ─────────────────────────── -->
+  <section class="check">
+    <span class="num">Check 2</span>
+    <h2>A category question makes matching product cards appear</h2>
+    <p class="lede">
+      The assistant does not just answer in prose — it cites catalogue ids, and
+      the page turns those into real product cards. This check confirms a plain
+      category question drives that, with no page reload and no separate
+      results view.
+    </p>
+
+    <h3>Before</h3>
+    <figure>
+      <img src="app_check_images/check2-before.jpg"
+           alt="Products page showing the full catalogue of 102 products with no chat results section" />
+      <figcaption>
+        The Products page at rest: &ldquo;102 products&rdquo;,
+        &ldquo;Showing 102 of 102&rdquo;, and no results section.
+      </figcaption>
+    </figure>
+
+    <h3>What I asked</h3>
+    <p>&ldquo;what hoodies do you have?&rdquo;</p>
+
+    <h3>After</h3>
+    <div class="pair">
+      <figure>
+        <img src="app_check_images/check2-after-page-cards.jpg"
+             alt="Products page now showing a results banner reading 12 matches from your question with hoodie product cards below" />
+        <figcaption>
+          A results section appears — <strong>&ldquo;12 matches from your
+          question&rdquo;</strong>, echoing the question asked — followed by the
+          matching hoodie cards.
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="app_check_images/check2-chat-cards.jpg"
+             alt="Chat widget showing a grid of twelve hoodie thumbnails with prices and a See 12 results on the page link" />
+        <figcaption>
+          The same twelve products as thumbnails inside the chat, with a
+          &ldquo;See 12 results on the page&rdquo; link.
+        </figcaption>
+      </figure>
+    </div>
+
+    <h3>Why this counts as working</h3>
+    <ul>
+      <li>The cards appeared <strong>dynamically</strong> — no reload, no route change.</li>
+      <li>They are the <strong>same <code>ProductCard</code></strong> used by the
+          normal catalogue, so clicking one opens the ordinary product page.
+          There is no separate chat-only detail view.</li>
+      <li>All twelve are genuine hooded garments from the catalogue
+          (Champion Reverse Weave Hoodie 1, Crew Left Chest Hoodie, District Vit
+          Hoodie Vintage Bulldog, and so on), each at its real price.</li>
+      <li>Cards render only for ids a tool actually returned during that run —
+          the Problem 9 hallucination guard — so nothing invented can appear.</li>
+    </ul>
+
+    <div class="note">
+      <strong>One honest caveat.</strong> The database holds <strong>27</strong>
+      garments whose type contains &ldquo;hood&rdquo;, but the assistant returned
+      and displayed <strong>12</strong>. That is the <code>search_catalogue</code>
+      tool's result cap (<code>limit</code> is capped at 12), not a lookup
+      failure — the cap exists to keep a single reply from consuming the run's
+      tool budget. Every product shown is real and correctly priced, but the
+      reply's phrase &ldquo;We have 12 hoodies&rdquo; understates the range. A
+      shopper wanting all 27 gets them from the <strong>Hoodies</strong> filter
+      in Check&nbsp;3.
+    </div>
+
+    <div class="verdict">
+      <strong>Pass.</strong> A category question produced 12 matching product
+      cards on the page dynamically, drawn from real catalogue rows.
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── CHECK 3 ─────────────────────────── -->
+  <section class="check">
+    <span class="num">Check 3</span>
+    <h2>Usability feature from Problem 9: product filtering and sorting</h2>
+    <p class="lede">
+      The first of the four Problem 9 improvements. 102 products in one grid is
+      a wall, so the Products page gained category and colour filters, an
+      in-stock toggle, and four sort orders.
+    </p>
+
+    <h3>Filtering by category</h3>
+    <figure>
+      <img src="app_check_images/check3-filter-hoodies.jpg"
+           alt="Products page filter bar with the Hoodies chip selected and the counter reading Showing 27 of 102" />
+      <figcaption>
+        <strong>Hoodies</strong> selected → the counter reads
+        <strong>&ldquo;Showing 27 of 102&rdquo;</strong> and 27 cards render.
+      </figcaption>
+    </figure>
+
+    <p>
+      27 is the number that matters here. The database stores
+      <code>garment_type</code> as free text, and five different values describe
+      a hooded garment:
+    </p>
+    <table>
+      <tr><th>garment_type value</th><th>products</th></tr>
+      <tr><td><code>pullover hoodie</code></td><td>18</td></tr>
+      <tr><td><code>hoodie</code></td><td>5</td></tr>
+      <tr><td><code>full-zip hooded sweatshirt</code></td><td>2</td></tr>
+      <tr><td><code>hooded sweatshirt</code></td><td>1</td></tr>
+      <tr><td><code>hooded pullover sweatshirt</code></td><td>1</td></tr>
+      <tr><td><strong>total</strong></td><td><strong>27</strong></td></tr>
+    </table>
+    <p style="margin-top:12px">
+      A filter built on exact column values would have shown five near-duplicate
+      chips and returned 18 for the obvious one. Because the filter groups raw
+      values by case-insensitive substring, it returns all
+      <span class="match">27</span> — matching the database exactly.
+    </p>
+
+    <h3>Filters and sorting compose</h3>
+    <figure>
+      <img src="app_check_images/check3-filter-hoodies-navy-sorted.jpg"
+           alt="Filter bar with Hoodies and Navy both selected, sort set to Price low to high, counter reading Showing 25 of 102" />
+      <figcaption>
+        Adding <strong>Navy</strong> narrows 27 → <strong>25</strong>, and the
+        sort is set to <strong>Price: low to high</strong>. The
+        <strong>Reset filters</strong> link appears once any filter is active.
+      </figcaption>
+    </figure>
+    <p>
+      With that sort applied the first six prices read
+      <code>$45, $45, $68, $68, $68, $68</code> — correctly ascending. The colour
+      filter also merges <code>navy</code> and <code>navy blue</code>, which the
+      database stores as separate values.
+    </p>
+
+    <div class="verdict">
+      <strong>Pass.</strong> Category filtering, colour filtering and price
+      sorting all work and combine, and the counts match the database once the
+      inconsistent <code>garment_type</code> spellings are accounted for.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <hr />
+  <p>
+    All three checks run against the live app — Vite dev server on
+    <code>localhost:5173</code>, FastAPI backend serving the real
+    <code>campus_customs.db</code> (102 products, 612 size rows). Screenshots
+    are in <code>app_check_images/</code> and referenced with relative paths, so
+    this page works when opened directly from disk.
+  </p>
+  <p>Campus Customs · MGT 409 AI Foundations · HW 4, Problem 11</p>
+</footer>
+
+</body>
+</html>

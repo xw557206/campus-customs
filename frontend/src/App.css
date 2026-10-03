@@ -1,0 +1,1621 @@
+/* ---------- layout ---------- */
+
+.shell {
+  flex: 1;
+}
+
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+}
+
+.page-head {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 44px 24px 8px;
+}
+
+.page-lede {
+  max-width: 62ch;
+  color: var(--dim);
+  margin-top: 12px;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+/* Small caps label with a short gold rule — the one repeated motif that ties
+   the hero, section heads and product detail together. */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold-ink);
+  margin-bottom: 14px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+  flex: none;
+}
+
+.muted {
+  color: var(--dim);
+  font-size: 14px;
+}
+
+.fineprint {
+  color: var(--dim);
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+/* ---------- nav ---------- */
+
+.nav {
+  background: var(--yale-deep);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* A gold hairline instead of a drop shadow: quieter, and it reads as a
+     ruled edge rather than a floating bar. */
+  border-bottom: 1px solid rgba(176, 141, 63, 0.45);
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #fff;
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand-mark {
+  color: #fff;
+  flex: none;
+  transition: transform 0.35s var(--ease);
+}
+
+.brand:hover .brand-mark {
+  transform: rotate(-6deg) scale(1.06);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-text strong {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+.brand-text em {
+  font-style: normal;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Navigation reads as small caps with an animated gold underline rather than
+   a filled pill — closer to a fashion storefront than an admin dashboard. */
+.nav-link {
+  position: relative;
+  color: #cfdcec;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s var(--ease);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 3px;
+  height: 1.5px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s var(--ease);
+}
+
+.nav-link:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.nav-link.active {
+  color: #fff;
+}
+
+.nav-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 8px;
+}
+
+.nav-cta {
+  background: #fff;
+  color: var(--yale-deep) !important;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 0 0 0 rgba(176, 141, 63, 0.6);
+  transition: box-shadow 0.25s var(--ease), transform 0.2s var(--ease);
+}
+
+.nav-cta:hover {
+  background: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 3px rgba(176, 141, 63, 0.45);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 8px;
+}
+
+.nav-toggle span {
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+@media (max-width: 760px) {
+  .nav-toggle {
+    display: flex;
+  }
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding-top: 8px;
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-divider {
+    width: 100%;
+    height: 1px;
+    margin: 6px 0;
+  }
+  .nav-cta {
+    text-align: center;
+  }
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  background:
+    radial-gradient(900px 420px at 78% 12%, rgba(40, 109, 192, 0.42), transparent 62%),
+    linear-gradient(150deg, var(--yale) 0%, var(--yale-deep) 55%, var(--yale-ink) 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gold hairline at the foot of the hero, echoing the navbar edge. */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(176, 141, 63, 0.75), transparent);
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 96px 24px 108px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero .eyebrow {
+  color: var(--gold-soft);
+}
+
+.hero .eyebrow::before {
+  background: var(--gold-soft);
+}
+
+.hero h1 {
+  color: #fff;
+  font-size: clamp(42px, 7.5vw, 76px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  max-width: 15ch;
+}
+
+.hero h1 span {
+  color: var(--gold-soft);
+  font-style: italic;
+}
+
+.hero-lede {
+  margin-top: 22px;
+  max-width: 54ch;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #cddcee;
+}
+
+.hero-actions {
+  margin-top: 34px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* The crest sits legibly on the right; the oversized head behind it is the
+   watermark. Both are decorative and hidden from assistive tech. */
+.hero-crest {
+  position: absolute;
+  right: 7%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  pointer-events: none;
+  animation: crest-in 0.9s var(--ease) both;
+}
+
+@keyframes crest-in {
+  from {
+    opacity: 0;
+    transform: translateY(-46%) scale(0.96);
+  }
+}
+
+/* Sits low and far right so it reads as a watermark behind the crest rather
+   than a second bulldog competing with it. */
+.hero-mark {
+  position: absolute;
+  right: -150px;
+  bottom: -230px;
+  color: rgba(255, 255, 255, 0.04);
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 1040px) {
+  .hero-crest {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-inner {
+    padding: 64px 24px 76px;
+  }
+  .hero-mark {
+    right: -120px;
+    bottom: -140px;
+  }
+}
+
+/* ---------- buttons ---------- */
+
+/* One button shape across the site: pill, uppercase, wide tracking. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 30px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.22s var(--ease), color 0.22s var(--ease),
+    transform 0.18s var(--ease), box-shadow 0.22s var(--ease),
+    border-color 0.22s var(--ease);
+}
+
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--yale);
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(0, 53, 107, 0.26);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--yale-deep);
+  box-shadow: 0 12px 28px rgba(0, 53, 107, 0.34);
+}
+
+.btn-primary:disabled {
+  background: #c3ccd8;
+  color: #6c7888;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* On the hero, "primary" needs to read against dark blue. */
+.hero .btn-primary {
+  background: #fff;
+  color: var(--yale-deep);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.26);
+}
+
+.hero .btn-primary:hover {
+  background: var(--gold-soft);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.btn-ghost:hover {
+  border-color: var(--gold);
+  color: var(--gold-soft);
+}
+
+.btn-light {
+  background: #fff;
+  color: var(--yale-deep);
+}
+
+.btn-light:hover {
+  background: var(--gold-soft);
+}
+
+.btn-wide {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--yale-mid);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link-more {
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+/* ---------- strip of promises ---------- */
+
+.strip {
+  max-width: 1200px;
+  margin: -34px auto 0;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0;
+  position: relative;
+  z-index: 2;
+  background: none;
+}
+
+/* One continuous card divided by hairlines, rather than four separate
+   boxes — calmer, and it looks deliberate rather than tiled. */
+.strip > div {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: none;
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: var(--shadow);
+}
+
+.strip > div:first-child {
+  border-left: 1px solid var(--line);
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.strip > div:last-child {
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.strip strong {
+  font-family: var(--serif);
+  color: var(--yale-ink);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.strip span {
+  color: var(--dim);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+@media (max-width: 860px) {
+  .strip {
+    margin-top: -20px;
+    gap: 12px;
+  }
+  .strip > div,
+  .strip > div:first-child,
+  .strip > div:last-child {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+}
+
+/* ---------- product grid ---------- */
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 26px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.search {
+  flex: 1;
+  min-width: 240px;
+  padding: 14px 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.search:focus {
+  outline: none;
+  border-color: var(--yale);
+  box-shadow: 0 0 0 4px var(--yale-mist);
+}
+
+.count {
+  color: var(--dim);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
+  gap: 26px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+  border-color: var(--line-strong);
+  text-decoration: none;
+}
+
+/* Full-bleed square tile. Half the catalogue photos are shot on white and
+   half on black, so any tinted backdrop leaves a visible seam on one half or
+   the other. Every source image is exactly 1:1, so `cover` fills the tile
+   edge to edge and crops nothing — both photo styles end up looking
+   deliberate. */
+.card-image {
+  background: var(--cream);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s var(--ease);
+}
+
+.card:hover .card-image img {
+  transform: scale(1.06);
+}
+
+.card-body {
+  padding: 18px 19px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.card-type {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: var(--gold-ink);
+}
+
+.card-name {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  transition: color 0.2s var(--ease);
+}
+
+.card:hover .card-name {
+  color: var(--yale-mid);
+}
+
+.card-desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--dim);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-foot {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-price {
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--yale-ink);
+}
+
+.tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.tag-in {
+  background: #e4f3ea;
+  color: #1a7f4b;
+}
+
+.tag-some {
+  background: #fdf1dc;
+  color: #96620a;
+}
+
+.tag-out {
+  background: #fbe9ea;
+  color: var(--accent);
+}
+
+/* ---------- product detail ---------- */
+
+.crumbs {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--dim);
+  margin-bottom: 20px;
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 44px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .detail {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
+/* Same reasoning as the card tile: full-bleed square, no padding, so a
+   black-backdrop photo reads as editorial rather than as a black box
+   floating inside a cream frame. */
+.detail-image {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  display: grid;
+  place-items: center;
+  position: sticky;
+  top: 98px;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.detail-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 860px) {
+  .detail-image {
+    position: static;
+  }
+}
+
+.detail-info .card-type {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.detail-info h1 {
+  margin: 0 0 16px;
+  font-size: clamp(30px, 4vw, 42px);
+}
+
+/* Price gets its own ruled line — the editorial treatment that makes a
+   detail page feel like a lookbook rather than a form. */
+.detail-price {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--yale-ink);
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.detail-desc {
+  margin-top: 20px;
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: #3b4857;
+  max-width: 54ch;
+}
+
+.field {
+  margin-top: 30px;
+}
+
+.field h3 {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.17em;
+  color: var(--gold-ink);
+  margin-bottom: 12px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background: var(--yale-mist);
+  border: 1px solid var(--yale-soft);
+  color: var(--yale);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.chip-quiet {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--dim);
+  font-weight: 500;
+  text-transform: none;
+}
+
+.sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.size {
+  min-width: 58px;
+  padding: 13px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  font-weight: 650;
+  font-size: 13.5px;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease),
+    color 0.2s var(--ease), transform 0.18s var(--ease);
+}
+
+.size:hover:not(:disabled) {
+  border-color: var(--yale);
+  transform: translateY(-2px);
+}
+
+.size-on {
+  border-color: var(--yale);
+  background: var(--yale);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(0, 53, 107, 0.24);
+}
+
+.size-out {
+  color: #b4bdc8;
+  background: transparent;
+  border-color: var(--line);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+/* ---------- prose / about ---------- */
+
+.prose {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 30px 24px 60px;
+}
+
+.prose h2 {
+  margin-top: 36px;
+  margin-bottom: 12px;
+}
+
+.prose p {
+  margin-bottom: 14px;
+  font-size: 16.5px;
+  color: #3b4857;
+}
+
+/* ---------- band ---------- */
+
+.band {
+  background:
+    radial-gradient(700px 300px at 50% 0%, rgba(40, 109, 192, 0.4), transparent 70%),
+    linear-gradient(160deg, var(--yale) 0%, var(--yale-ink) 100%);
+  color: #fff;
+  text-align: center;
+  padding: 76px 24px 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* A second, quieter bulldog appearance: a repeating paw-free watermark band
+   built from the crest silhouette would be heavy, so this is just a ruled
+   gold frame that echoes the crest. */
+.band::before {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(176, 141, 63, 0.3);
+  border-radius: var(--radius);
+  pointer-events: none;
+}
+
+.band > * {
+  position: relative;
+  z-index: 1;
+}
+
+.band h2 {
+  color: #fff;
+}
+
+.band p {
+  max-width: 58ch;
+  color: #d6e3f3;
+}
+
+.band .btn {
+  margin-top: 8px;
+}
+
+/* ---------- notices ---------- */
+
+.notice {
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--dim);
+  font-size: 14.5px;
+  margin-bottom: 22px;
+}
+
+.notice-error {
+  background: #fdf2f3;
+  border-color: #f3c9ce;
+  color: #8f1d2a;
+}
+
+/* ---------- auth ---------- */
+
+.auth {
+  display: grid;
+  place-items: center;
+  padding: 56px 24px 72px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 40px 38px 36px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Gold rule across the top of the card, matching the nav and hero edges. */
+.auth-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, var(--yale), var(--gold), var(--yale));
+}
+
+.auth-mark {
+  color: var(--yale);
+  margin: 0 auto 14px;
+}
+
+.auth-card h1 {
+  font-size: 29px;
+  margin-bottom: 8px;
+}
+
+.auth-card > .muted {
+  display: block;
+  max-width: 34ch;
+  margin: 0 auto;
+}
+
+.auth-card form {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.auth-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.auth-card input {
+  padding: 13px 15px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--ink);
+  background: var(--bg);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease),
+    background 0.2s var(--ease);
+}
+
+.auth-card input:focus {
+  outline: none;
+  background: var(--surface);
+  border-color: var(--yale);
+  box-shadow: 0 0 0 4px var(--yale-mist);
+}
+
+.auth-card input::placeholder {
+  color: #9aa6b4;
+}
+
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.auth-alt {
+  margin-top: 18px;
+  font-size: 14px;
+  color: var(--dim);
+  text-align: center;
+}
+
+/* ---------- footer ---------- */
+
+.foot {
+  background: var(--yale-ink);
+  color: #b9cbe3;
+  margin-top: auto;
+  border-top: 1px solid rgba(176, 141, 63, 0.4);
+}
+
+.foot-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 38px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.foot-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+}
+
+.foot-brand div {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.foot-brand strong {
+  font-family: var(--serif);
+  font-size: 17px;
+}
+
+.foot-brand span {
+  font-size: 13px;
+  color: #9fb6d2;
+}
+
+.foot-note {
+  font-size: 13px;
+  max-width: 44ch;
+}
+
+/* ---------- chat widget ---------- */
+
+.chat-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px 12px 14px;
+  border: 1px solid rgba(176, 141, 63, 0.5);
+  border-radius: 999px;
+  background: var(--yale-deep);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.chat-fab:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 26px 60px rgba(1, 32, 72, 0.3);
+}
+
+/* The mascot nods when you hover the launcher. Small, and it does the work
+   of making the assistant feel like part of the brand. */
+.chat-fab svg {
+  transition: transform 0.4s var(--ease);
+}
+
+.chat-fab:hover svg {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+.chat {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 60;
+  width: min(382px, calc(100vw - 32px));
+  height: min(540px, calc(100vh - 110px));
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  animation: chat-in 0.28s var(--ease) both;
+}
+
+@keyframes chat-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+}
+
+.chat-head {
+  background: linear-gradient(135deg, var(--yale) 0%, var(--yale-ink) 100%);
+  color: #fff;
+  padding: 15px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(176, 141, 63, 0.45);
+}
+
+.chat-head > svg {
+  flex: none;
+}
+
+.chat-head div {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  margin-right: auto;
+}
+
+.chat-head strong {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.chat-head span {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+
+.chat-head button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 23px;
+  line-height: 1;
+  padding: 0 4px;
+}
+
+/* A very faint bulldog watermark in the log, so an empty or short
+   conversation still feels like part of the storefront. */
+.chat-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' width='150' height='150'><g fill='%2300356b' opacity='0.045'><path d='M13.5 17.5c-4-4.5-4-9.5-1-10.5s8 2 10.5 7.5z'/><path d='M50.5 17.5c4-4.5 4-9.5 1-10.5s-8 2-10.5 7.5z'/><path d='M32 10c12.5 0 20.5 7.6 20.5 18.5 0 12-8.6 21.5-20.5 21.5S11.5 40.5 11.5 28.5C11.5 17.6 19.5 10 32 10z'/></g></svg>")
+      no-repeat center 62%,
+    var(--bg);
+}
+
+.bubble {
+  padding: 11px 15px;
+  border-radius: var(--radius);
+  font-size: 14.5px;
+  line-height: 1.55;
+  max-width: 86%;
+  white-space: pre-wrap;
+}
+
+.bubble-assistant {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  align-self: flex-start;
+  border-bottom-left-radius: 5px;
+  box-shadow: var(--shadow-sm);
+}
+
+.bubble-user {
+  background: var(--yale);
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 53, 107, 0.2);
+}
+
+.typing {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--yale-mid);
+  animation: blink 1.3s infinite;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0%, 60%, 100% {
+    opacity: 0.28;
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+.chat-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.chat-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 15px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--bg);
+}
+
+.chat-form input:focus {
+  outline: none;
+  background: var(--surface);
+  border-color: var(--yale);
+  box-shadow: 0 0 0 3px var(--yale-mist);
+}
+
+.chat-form button {
+  padding: 11px 20px;
+  border: none;
+  border-radius: 999px;
+  background: var(--yale);
+  color: #fff;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.2s var(--ease);
+}
+
+.chat-form button:not(:disabled):hover {
+  background: var(--yale-deep);
+}
+
+/* A flat grey rather than a faded blue: at 45% opacity the navy turned a
+   muddy periwinkle that read as a styling bug rather than a disabled state. */
+.chat-form button:disabled {
+  background: #d4dae2;
+  color: #78838f;
+  cursor: not-allowed;
+}
+
+/* ---------- signed-in nav + form messages ---------- */
+
+.nav-who {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 4px 8px 10px;
+  white-space: nowrap;
+}
+
+.nav-signout {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.notice-ok {
+  background: #e9f6ee;
+  border-color: #b6e0c6;
+  color: #1a7f4b;
+}
+
+.form-msg {
+  margin: 18px 0 0;
+  font-size: 14px;
+}
+
+/* ---------- product cards inside the chat ---------- */
+
+.turn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 8px;
+  align-self: flex-start;
+  max-width: 100%;
+}
+
+.chat-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.14s, transform 0.14s;
+}
+
+.chat-card:hover {
+  border-color: var(--yale-mid);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.chat-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: var(--cream);
+  border-radius: 7px;
+}
+
+.chat-card-name {
+  font-size: 11.5px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--yale-deep);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.chat-card-price {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--yale-mid);
+}
+
+/* ---------- assistant results on the Products page ---------- */
+
+.results {
+  padding-bottom: 8px;
+}
+
+.results-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 18px 22px;
+  background: var(--yale-mist);
+  border: 1px solid var(--yale-soft);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--radius);
+}
+
+.results-head h2 {
+  font-size: 20px;
+}
+
+.results-head .muted {
+  margin-top: 4px;
+}
+
+.image-missing {
+  font-size: 12px;
+  color: var(--dim);
+  text-align: center;
+  padding: 10px;
+}
+
+.chat-seeall {
+  align-self: flex-start;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--yale-mid);
+}
+
+.chat-seeall:hover {
+  border-color: var(--yale-mid);
+  background: var(--yale-soft);
+}
+
+.chat-clear {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  border-radius: 7px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.chat-clear:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ---------- catalogue filters and sorting ---------- */
+
+.filters {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--dim);
+  min-width: 62px;
+}
+
+.chips-row {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.fchip {
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 7px 15px;
+  font-size: 13px;
+  font-weight: 550;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease),
+    color 0.2s var(--ease), transform 0.18s var(--ease);
+}
+
+.fchip:hover {
+  border-color: var(--yale);
+  color: var(--yale);
+  transform: translateY(-1px);
+}
+
+.fchip.on {
+  background: var(--yale);
+  border-color: var(--yale);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 53, 107, 0.22);
+}
+
+.fchip-n {
+  opacity: 0.6;
+  font-size: 12px;
+  margin-left: 3px;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  color: var(--dim);
+}
+
+.sort select {
+  font: inherit;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.filter-row .count {
+  margin-left: auto;
+}
+
+/* ---------- chat UX ---------- */
+
+.suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  align-items: flex-start;
+}
+
+.suggest-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.suggest-label {
+  color: var(--gold-ink);
+}
+
+.suggest {
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 9px 15px;
+  font-size: 13.5px;
+  color: var(--yale);
+  width: 100%;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease),
+    transform 0.18s var(--ease);
+}
+
+.suggest:hover {
+  border-color: var(--yale);
+  background: var(--yale-mist);
+  transform: translateX(3px);
+}
+
+.bubble-failed {
+  background: #fdf2f3;
+  color: #8f1d2a;
+  border: 1px solid #f3c9ce;
+}
+
+.chat-retry {
+  align-self: flex-start;
+  background: var(--yale);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 13px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.typing-wrap {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.typing-text {
+  font-size: 13px;
+  color: var(--dim);
+}

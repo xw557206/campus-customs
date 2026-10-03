@@ -1,0 +1,135 @@
+:root {
+  /* Yale blue is the anchor; the rest is built around it. */
+  --yale: #00356b;
+  --yale-deep: #012048;
+  --yale-ink: #00172f; /* deepest blue, for headings and the footer */
+  --yale-mid: #286dc0;
+  --yale-light: #7fb0e8;
+  --yale-soft: #e8eef7;
+  --yale-mist: #f2f6fb;
+  --accent: #c8102e;
+
+  /* Soft gold is the one luxury note. Used sparingly: hairlines, the crest,
+     eyebrow rules, hover underlines. Never for body text — it would fail
+     contrast on a light background. */
+  /* Two golds, chosen by contrast ratio rather than taste:
+       --gold      3.1:1 on white — decorative only (rules, borders, crest),
+                   and safe as text on the dark blue (5.2:1).
+       --gold-ink  5.2:1 on white — the one used for small label text.
+       --gold-soft light, for text on dark blue (11:1). */
+  --gold: #b08d3f;
+  --gold-ink: #8a6a22;
+  --gold-soft: #e8dcc0;
+
+  --ink: #16202b;
+  --dim: #5c6b7a;
+  --line: #e3e7ee;
+  --line-strong: #cfd7e3;
+  /* Warm off-white rather than a cool grey: it reads as paper, which makes
+     the blue feel richer and the whole page less "default web app". */
+  --bg: #fbfaf7;
+  --cream: #f6f2ea;
+  --surface: #ffffff;
+
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 2px rgba(1, 32, 72, 0.05);
+  --shadow: 0 8px 26px rgba(1, 32, 72, 0.08);
+  --shadow-lg: 0 22px 56px rgba(1, 32, 72, 0.2);
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  /* Fraunces and Inter load from the CDN in index.html; the fallbacks keep
+     the hierarchy intact if they don't. */
+  --serif: 'Fraunces', 'Georgia', 'Times New Roman', serif;
+  --sans: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--yale-ink);
+  line-height: 1.15;
+}
+
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+::selection {
+  background: var(--yale);
+  color: #fff;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--yale-mid);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--yale-mid);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
